@@ -4,19 +4,21 @@ createApp({
     data() {
         return {
         
-            parola: "",
+            mail:[
+                
+            ],
 
         }
     },
     mounted() {
-        let random;
-
-        axios.get('https://flynn.boolean.careers/exercises/api/random/mail').then((result) => {
+        for (i = 0; i < 10; i++) {
+            axios.get('https://flynn.boolean.careers/exercises/api/random/mail').then((result) => {
 
             console.log(result)
 
-            this.parola = result.data.response
-
-        });
+            this.mail.push({response:result.data.response, success:result.data.success})
+            });
+    
+        }
     }
 }).mount('#app')
